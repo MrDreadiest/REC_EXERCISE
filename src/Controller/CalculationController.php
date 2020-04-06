@@ -2,7 +2,7 @@
 
 namespace App\Controller;
 
-use Doctrine\Common\Collections\ArrayCollection;
+use App\Entity\Calculation;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Routing\Annotation\Route;
 
@@ -24,25 +24,14 @@ class CalculationController extends AbstractController
     public function calculation($n)
     {
         /** @var array $outputArray */
-        $outputArray = new ArrayCollection([0, 1]);
-        $maxOccurrence = PHP_INT_MIN;
+        $outputArray = [];
 
-        if (2 > $n) $maxOccurrence = $outputArray[$n];
-        else {
-            for ($i = 2; $i <= $n; $i++) {
-
-                if (0 == $i % 2) {
-                    $outputArray->add($outputArray[$i / 2]);
-                }
-                elseif (1 == $i % 2) {
-                    $outputArray->add($outputArray[$i / 2] + $outputArray[($i / 2) + 1]);
-                }
-                if ($outputArray[$i] > $maxOccurrence) $maxOccurrence = $outputArray[$i];
-            }
-        }
+        $calculation = new Calculation($n);
+        $calculation->calculate();
+        $outputArray[] = $calculation->getMaxOccurrence();
 
         return $this->render('calculation/index.html.twig', [
-            'maxOccurrence' => $maxOccurrence,
+            'outputArray' => $outputArray,
         ]);
     }
 }
