@@ -1,7 +1,12 @@
 {% extends 'base.html.twig' %}
 {% block body %}
 
-    {% if maxOccurrence is defined %}
-        <div>{{ maxOccurrence }}</div>
+    {% if outputArray is defined %}
+        <ul class="list-group list-group-flush">
+            {% for element in outputArray %}
+                <li class="list-group-item">{{ element }}</li>
+            {% endfor %}
+        </ul>
     {% endif %}
+
 {% endblock %}
