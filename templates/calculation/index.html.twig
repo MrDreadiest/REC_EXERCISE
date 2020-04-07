@@ -1,12 +1,27 @@
 {% extends 'base.html.twig' %}
 {% block body %}
+    <div class="container-sm">
+        {{ form(form) }}
 
-    {% if outputArray is defined %}
-        <ul class="list-group list-group-flush">
-            {% for element in outputArray %}
-                <li class="list-group-item">{{ element }}</li>
-            {% endfor %}
-        </ul>
-    {% endif %}
-
+        {% if outputArray is defined %}
+            <table class="table table-striped">
+                <thead>
+                <tr>
+                    <th scope="col">#</th>
+                    <th scope="col">Input</th>
+                    <th scope="col">Output</th>
+                </tr>
+                </thead>
+                <tbody>
+                {% for row in outputArray %}
+                    <tr>
+                        {% for col in row %}
+                            <td>{{ col }}</td>
+                        {% endfor %}
+                    </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+        {% endif %}
+    </div>
 {% endblock %}
