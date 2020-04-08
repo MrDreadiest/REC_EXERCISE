@@ -1,5 +1,7 @@
 # REC_EXERCISE
-Recruitment exercise
+Recruitment exercise.
+
+Exercise description is in ZADANIE_PHP.pdf
 
 Solved based on Symfony 4.4.99.
 Form on the home page.
